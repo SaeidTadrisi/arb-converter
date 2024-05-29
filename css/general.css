@@ -1,0 +1,98 @@
+
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 15px;
+}
+
+.app-panel {
+  border: solid, 1px, rgb(166, 166, 166);
+  padding: 10px;
+  border-radius: 5px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%)
+  
+}
+
+.select-option {
+  height: 30px;
+  width: 200px;
+  border: solid, 1px, rgb(166, 166, 166);
+  color: rgb(35, 35, 35);
+  border-radius: 5px;
+}
+
+
+.label {
+  font-size: 22px;
+  margin-bottom: 20px;
+  display: block;
+}
+
+.hint {
+  margin-top: 10px;
+  color: rgb(81, 81, 81);
+  display: block;
+  font-size: 12px;
+}
+
+
+.upload-button {
+  height: 30px;
+  width: 100px;
+  border: solid, 1px, rgb(166, 166, 166);
+  border-radius: 5px;
+  cursor: pointer;
+  margin-left: 20px;
+}
+
+.upload-button:hover {
+  background-color: rgb(221, 221, 221)
+}
+
+.select-panel {
+  height: 30px;
+}
+
+
+.file-list {
+  list-style: none;
+  padding-top: 3px;
+  padding-left: 5px;
+  padding-bottom: 3px;
+  height: 53px;
+  margin-top: 35px;
+  border: 1px solid rgb(166, 166, 166);
+  padding-left: -20px;
+  overflow-y: auto;
+}
+
+.convert-button {
+  height: 40px;
+  width: 326px;
+  border: solid, 1px, rgb(166, 166, 166);
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.convert-button:hover {
+  background-color: rgb(221, 221, 221)
+}
+
+.ref-file {
+  display: block;
+  margin-top: 3px;
+  padding-top: 3px;
+  padding-left: 5px;
+  padding-bottom: 3px;
+  height: 20px;
+  border: 1px solid rgb(166, 166, 166);
+  margin-bottom: 20px;
+}
+
+.refrence-label {
+  font-size: 12px;
+  color: rgb(81, 81, 81);
+}

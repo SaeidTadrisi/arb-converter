@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ARB Converter</title>
+  <link rel="stylesheet" href="css/general.css">
+</head>
+<body>
+  
+  <div class="app-panel">
+    <label class="label">Choose what action do you need:</label>
+    <div class="select-panel">
+      <select class="select-option" id="actionId">
+        <option value="" disabled selected>First Select Your Action</option>
+        <option value="prepare_to_translate">Prepare To Translate</option>
+        <option value="convert_translation">Convert Translation </option>
+      </select>
+  
+      <button class="upload-button" disabled id="uploadButton">Upload</button>
+
+      <form id="uploadForm" method="POST" action="https://arb-excel-converter-web.onrender.com/translate/prepare-translate" enctype="multipart/form-data">
+        <input type="file" id="fileList" name="fileList" multiple style="display: none">
+        <input type="text" id="referenceFile" name="referenceFile" style="display: none;"></form>
+
+        <p class="hint" id="hint"></p>
+
+      </div>
+
+    <div class="list-div">
+      <ul class="file-list" id="fileListShow"></ul>
+    </div>
+
+    <label class="refrence-label">Reference File:</label>
+
+    <p class="ref-file" id="referenceFileShow"></p>
+
+
+    <button class="convert-button" id="convertButton">Convert</button>
+
+    
+  </div>
+
+  <script src="js/homepage.js"></script>
+</body>
+</html>
