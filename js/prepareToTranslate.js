@@ -2,16 +2,18 @@ const referenceFileShow = document.getElementById('referenceFileShow');
 const fileListShow = document.getElementById('fileListShow');
 const referenceFile = document.getElementById('referenceFile');
 const convertButton = document.getElementById('convertButton');
-const uploadForm = document.getElementById('uploadForm');
+const uploadFormARB = document.getElementById('uploadFormARB');
 const fileList = document.getElementById('fileList');
+const uploadButton = document.getElementById('uploadButton');
+
 
 export function showReferenceFile (){
+  fileListShow.innerHTML = '';
+  referenceFileShow.innerHTML = '';
+
   document.getElementById('fileList').addEventListener('change', (event) => {
     const selectedFiles = event.target.files;
-  
-    fileListShow.innerHTML = '';
-    referenceFileShow.innerHTML = '';
-  
+    
     for (let i = 0; i < selectedFiles.length; i++) {
       const file = selectedFiles[i];
       const listItem = document.createElement('li');
@@ -29,12 +31,12 @@ export function showReferenceFile (){
   });
 }
 
-export function sentRequest() {
+export function sentARBRequest() {
   convertButton.addEventListener('click', () => {
-    uploadForm.submit();
+    uploadFormARB.submit();
   })
 
-  uploadForm.addEventListener('submit', async (event) => {
+  uploadFormARB.addEventListener('submit', async (event) => {
     event.preventDefault();
 
     const formData = new FormData();
@@ -44,7 +46,6 @@ export function sentRequest() {
     }
 
     formData.append('referenceFile', referenceFile.value);
-
     try {
         const response = await fetch('https://arb-excel-converter-web.onrender.com/translate/prepare-translate', {
             method: 'POST',
@@ -59,4 +60,10 @@ export function sentRequest() {
         console.error('Error uploading files:', error);
     }
 });
+}
+
+export function arbFilesSelect(){
+  uploadButton.addEventListener('click', () => {
+    fileList.click();
+  })
 }

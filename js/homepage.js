@@ -1,35 +1,36 @@
 
-import {showReferenceFile, sentRequest} from './prepare-to-translate.js';
+import {showReferenceFile, sentARBRequest, arbFilesSelect} from './prepareToTranslate.js';
+import {showSelectedFile, sentExcelRequest, excelFilesSelect} from './convertTranslation.js';
 
-
-const selectElement = document.getElementById('actionId');
 const hintElement = document.getElementById('hint');
 const uploadButton = document.getElementById('uploadButton');
 const fileList = document.getElementById('fileList');
+const excelFile = document.getElementById('excelFile');
+const selectElement = document.getElementById("selectOption");
 
-uploadButton.addEventListener('click', () => {
-  fileList.click();
-})
+selectElement.addEventListener('change', executeBySelectedOption);
 
-selectElement.addEventListener('change', function() {
+function executeBySelectedOption(){
   const selectedValue = selectElement.value;
+
   let hintText;
   uploadButton.disabled = false;
 
-  switch (selectedValue) {
-    
-    case 'prepare_to_translate':
-      fileList.multiple = true;
-      hintText = 'Your files must be in standard (.ARB) format.';
-      fileList.accept = ".arb"
-      showReferenceFile();
-      sentRequest();
-      break;
-    case 'convert_translation':
-      fileList.multiple = false;
-      hintText = 'Your file must be in standard (.Excel) format.';
-      fileList.accept = ".xlsx , .xls"
-      break;
+  if (selectedValue === 'prepare_to_translate') {
+    hintText = 'Your files must be in standard (.ARB) format.';
+    fileList.accept = ".arb"
+    this.disabled = true;
+    arbFilesSelect();
+    showReferenceFile();
+    sentARBRequest();
+    }
+    else if (selectedValue === 'convert_translation'){
+    hintText = 'Your file must be in standard (.Excel) format.';
+    excelFile.accept = ".xlsx , .xls"
+    this.disabled = true;
+    excelFilesSelect();
+    showSelectedFile();
+    sentExcelRequest();
   }
   hintElement.textContent = hintText;
-});
+};

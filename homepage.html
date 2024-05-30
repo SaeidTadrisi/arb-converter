@@ -11,7 +11,7 @@
   <div class="app-panel">
     <label class="label">Choose what action do you need:</label>
     <div class="select-panel">
-      <select class="select-option" id="actionId">
+      <select class="select-option" id="selectOption">
         <option value="" disabled selected>First Select Your Action</option>
         <option value="prepare_to_translate">Prepare To Translate</option>
         <option value="convert_translation">Convert Translation </option>
@@ -19,13 +19,19 @@
   
       <button class="upload-button" disabled id="uploadButton">Upload</button>
 
-      <form id="uploadForm" method="POST" action="https://arb-excel-converter-web.onrender.com/translate/prepare-translate" enctype="multipart/form-data">
+      <form id="uploadFormARB" method="POST" action="https://arb-excel-converter-web.onrender.com/translate/prepare-translate" enctype="multipart/form-data">
         <input type="file" id="fileList" name="fileList" multiple style="display: none">
-        <input type="text" id="referenceFile" name="referenceFile" style="display: none;"></form>
+        <input type="text" id="referenceFile" name="referenceFile" style="display: none;">
+      </form>
 
-        <p class="hint" id="hint"></p>
+      <form id="uploadFormExcel" method="POST" action="https://arb-excel-converter-web.onrender.com/translate/convert-translation" enctype="multipart/form-data">
+        <input type="file" id="excelFile" name="file" style="display: none">
+      </form>
+
+      <p class="hint" id="hint"></p>
 
       </div>
+
 
     <div class="list-div">
       <ul class="file-list" id="fileListShow"></ul>
