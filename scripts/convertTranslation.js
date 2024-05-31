@@ -62,10 +62,12 @@ function validateExcelFiles(){
     const file = excelFile.files[0];
     const extension = file.name.split('.').pop().toLowerCase();
 
+    /*
     if (extension !== 'xlsx'){
       errorMessage.textContent = '* Invalid file type. Only XLSX or XLS extensions are allowed.';
       return false;
     }
+    */
     errorMessage.textContent = '';
   return true;
 }
