@@ -40,18 +40,16 @@ export function sendARBRequest() {
       return;
     }
 
-    const formData = new FormData();
+    const arbFormData = new FormData();
 
-    for (let i = 0; i < fileList.files.length; i++) {
-      formData.append('fileList', fileList.files[i]);
-    }
+    fileList.forEach(file => arbFormData.append("fileList", file));
 
-    formData.append('referenceFile', referenceFile.value);
-    uploadFormARB.submit();
+    arbFormData.append('referenceFile', referenceFile.value);
+
     try {
         const response = await fetch('https://arb-excel-converter-web.onrender.com/translate/prepare-translate', {
             method: 'POST',
-            body: formData
+            body: arbFormData
         });
         if (response.ok) {
           const data = await response.blob();

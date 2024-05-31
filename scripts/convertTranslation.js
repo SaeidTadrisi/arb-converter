@@ -26,13 +26,14 @@ export function sendExcelRequest() {
       return;
     }
 
-    const formData = new FormData();
-    formData.append('file', fileList.files[0]);
-    uploadFormExcel.submit();
+    const excelFormData = new FormData();
+
+    excelFormData.append('file', fileList.files[0]);
+
     try {
         const response = await fetch('https://arb-excel-converter-web.onrender.com/translate/convert-translation', {
             method: 'POST',
-            body: formData
+            body: excelFormData
         });
 
         if (response.ok) {            
