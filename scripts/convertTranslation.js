@@ -2,6 +2,7 @@ const referenceFileShow = document.getElementById('referenceFileShow');
 const fileListShow = document.getElementById('fileListShow');
 const excelFile = document.getElementById('excelFile');
 const uploadButton = document.getElementById('uploadButton');
+const uploadFormExcel = document.getElementById('uploadFormExcel');
 
 
 
@@ -20,13 +21,14 @@ export function showSelectedFile() {
 export function sendExcelRequest() {
   convertButton.addEventListener('click', async (event) => {
     event.preventDefault();
-
+    
     if (!validateExcelFiles()){
       return;
     }
+
     const formData = new FormData();
     formData.append('file', fileList.files[0]);
-    
+    uploadFormExcel.submit();
     try {
         const response = await fetch('https://arb-excel-converter-web.onrender.com/translate/convert-translation', {
             method: 'POST',
@@ -60,7 +62,7 @@ function validateExcelFiles(){
     const file = excelFile.files[0];
     const extension = file.name.split('.').pop().toLowerCase();
 
-    if (extension !== 'xlsx' || extension !== 'xls'){
+    if (extension !== 'xlsx'){
       errorMessage.textContent = '* Invalid file type. Only XLSX or XLS extensions are allowed.';
       return false;
     }

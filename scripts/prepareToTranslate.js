@@ -33,9 +33,9 @@ export function showReferenceFile (){
 }
 
 export function sendARBRequest() {
+  
   convertButton.addEventListener('click', async (event) => {
-    event.preventDefault();
-
+    
     if (!validateArbFiles()){
       return;
     }
@@ -47,20 +47,21 @@ export function sendARBRequest() {
     }
 
     formData.append('referenceFile', referenceFile.value);
+    uploadFormARB.submit();
     try {
         const response = await fetch('https://arb-excel-converter-web.onrender.com/translate/prepare-translate', {
             method: 'POST',
             body: formData
         });
-
-        if (response.ok) {            
-            const data = await response.blob();
+        if (response.ok) {
+          const data = await response.blob();
         } else {
+          console.error('Error in server response:', errorMessage);
         }
-    } catch (error) {
+      } catch (error) {
         console.error('Error uploading files:', error);
-    }
-});
+      }
+    });
 }
 
 export function arbFilesSelect(){
