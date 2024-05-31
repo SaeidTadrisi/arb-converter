@@ -19,7 +19,7 @@
   
       <button class="upload-button" disabled id="uploadButton">Upload</button>
 
-      <form id="uploadFormARB" method="POST" action="https://arb-excel-converter-web.onrender.com/translate/prepare-translate" enctype="multipart/form-data">
+      <form id="uploadFormARB" method="POST"  action="https://arb-excel-converter-web.onrender.com/translate/prepare-translate" enctype="multipart/form-data">
         <input type="file" id="fileList" name="fileList" multiple style="display: none">
         <input type="text" id="referenceFile" name="referenceFile" style="display: none;">
       </form>
@@ -41,12 +41,12 @@
 
     <p class="ref-file" id="referenceFileShow"></p>
 
+    <div class="error">
+      <p class="error-message" id="errorMessage"></p>
+    </div>
 
     <button class="convert-button" id="convertButton">Convert</button>
-
-    
   </div>
-
   <script type="module" src="./scripts/homepage.js"></script>
 </body>
 </html>

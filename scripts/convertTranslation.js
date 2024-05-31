@@ -13,21 +13,19 @@ export function showSelectedFile() {
     const selectedFile = event.target.files;
     const file = selectedFile[0];
       fileListShow.innerHTML = file.name;
+      uploadButton.disabled = true;
     });
 }
 
-export function sentExcelRequest() {
-  convertButton.addEventListener('click', () => {
-    uploadFormExcel.submit();
-  })
-
-  uploadFormExcel.addEventListener('submit', async (event) => {
+export function sendExcelRequest() {
+  convertButton.addEventListener('click', async (event) => {
     event.preventDefault();
 
+    if (!validateExcelFiles()){
+      return;
+    }
     const formData = new FormData();
-    const selectedFile = excelFile.files;
-
-      formData.append('file', fileList.files[0]);
+    formData.append('file', fileList.files[0]);
     
     try {
         const response = await fetch('https://arb-excel-converter-web.onrender.com/translate/convert-translation', {
@@ -49,4 +47,23 @@ export function excelFilesSelect(){
   uploadButton.addEventListener('click', () => {
     excelFile.click();
   })
+}
+
+function validateExcelFiles(){
+  const errorMessage = document.getElementById('errorMessage');
+
+  if (!excelFile.files.length) {
+    errorMessage.textContent = '* Please select one file to upload.';
+    return false;
+  }
+
+    const file = excelFile.files[0];
+    const extension = file.name.split('.').pop().toLowerCase();
+
+    if (extension !== 'xlsx' || extension !== 'xls'){
+      errorMessage.textContent = '* Invalid file type. Only XLSX or XLS extensions are allowed.';
+      return false;
+    }
+    errorMessage.textContent = '';
+  return true;
 }

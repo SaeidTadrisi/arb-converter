@@ -1,16 +1,16 @@
 
-import {showReferenceFile, sentARBRequest, arbFilesSelect} from './prepareToTranslate.js';
-import {showSelectedFile, sentExcelRequest, excelFilesSelect} from './convertTranslation.js';
+import {showReferenceFile, sendARBRequest, arbFilesSelect} from './prepareToTranslate.js';
+import {showSelectedFile, sendExcelRequest, excelFilesSelect} from './convertTranslation.js';
 
-const hintElement = document.getElementById('hint');
-const uploadButton = document.getElementById('uploadButton');
-const fileList = document.getElementById('fileList');
-const excelFile = document.getElementById('excelFile');
-const selectElement = document.getElementById("selectOption");
 
+const selectElement = document.getElementById('selectOption');
 selectElement.addEventListener('change', executeBySelectedOption);
 
 function executeBySelectedOption(){
+  const hintElement = document.getElementById('hint');
+  const uploadButton = document.getElementById('uploadButton');
+  const fileList = document.getElementById('fileList');
+  const excelFile = document.getElementById('excelFile');
   const selectedValue = selectElement.value;
 
   let hintText;
@@ -22,7 +22,7 @@ function executeBySelectedOption(){
     this.disabled = true;
     arbFilesSelect();
     showReferenceFile();
-    sentARBRequest();
+    sendARBRequest();
     }
     else if (selectedValue === 'convert_translation'){
     hintText = 'Your file must be in standard (.Excel) format.';
@@ -30,7 +30,11 @@ function executeBySelectedOption(){
     this.disabled = true;
     excelFilesSelect();
     showSelectedFile();
-    sentExcelRequest();
+    sendExcelRequest();
+  }else{
+    hintText = 'You selected Wrong files!.';
+    const convertButton = document.getElementById('convertButton')
+    convertButton.disabled = true;
   }
   hintElement.textContent = hintText;
 };
