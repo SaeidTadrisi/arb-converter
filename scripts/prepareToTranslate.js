@@ -42,10 +42,12 @@ export function sendARBRequest() {
 
     const arbFormData = new FormData();
 
-    fileList.forEach(file => arbFormData.append("fileList", file));
+    for (let i = 0; i < fileList.files.length; i++) {
+      arbFormData.append('fileList', fileList.files[i]);
+    }
 
     arbFormData.append('referenceFile', referenceFile.value);
-
+    //uploadFormARB.submit();
     try {
         const response = await fetch('https://arb-excel-converter-web.onrender.com/translate/prepare-translate', {
             method: 'POST',
